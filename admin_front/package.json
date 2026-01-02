@@ -1,0 +1,32 @@
+{
+  "name": "admin-front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run",
+    "generate:error-codes": "ts-node --project tsconfig.scripts.json scripts/generateErrorCodes.ts"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "next-auth": "^4.24.11"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "8.57.0",
+    "eslint-config-next": "^15.5.4",
+    "jsdom": "^24.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.4",
+    "yaml": "2.5.1"
+  }
+}

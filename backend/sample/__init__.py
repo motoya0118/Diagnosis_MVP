@@ -1,0 +1,1 @@
+# Sample Bedrock integration package

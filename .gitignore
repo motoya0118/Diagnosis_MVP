@@ -1,0 +1,12 @@
+.env
+# Per-project environment files
+backend/.env*
+frontend/.env*
+admin_front/.env*
+
+.next
+.vscode
+.pytest_cache
+node_modules
+__pycache__
+.DS_Store

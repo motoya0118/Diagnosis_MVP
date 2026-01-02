@@ -1,0 +1,165 @@
+version: 1
+domains:
+  common:
+    prefix: E00
+    errors:
+      UNAUTHENTICATED:
+        code: "100"
+        ui_message: "ログインが必要です"
+        action: "ログインする"
+      PERMISSION_DENIED:
+        code: "101"
+        ui_message: "アクセス権限がありません"
+        action: "トップに戻る"
+      VALIDATION_ERROR:
+        code: "102"
+        ui_message: "入力内容を確認してください"
+        action: "入力を修正する"
+      RESOURCE_NOT_FOUND:
+        code: "103"
+        ui_message: "データが見つかりません"
+        action: "トップに戻る"
+      CONFLICT:
+        code: "104"
+        ui_message: "操作が競合しました。再度お試しください"
+        action: "再度お試しください"
+      UNEXPECTED_ERROR:
+        code: "999"
+        ui_message: "予期しないエラーが発生しました"
+        action: "再度お試しください"
+  auth:
+    prefix: E10
+    errors:
+      EMAIL_ALREADY_REGISTERED:
+        code: "100"
+        ui_message: "このメールアドレスはすでに登録されています"
+        action: "ログインする"
+      INVALID_CREDENTIALS:
+        code: "101"
+        ui_message: "メールアドレスまたはパスワードが正しくありません"
+        action: "入力を確認する"
+      GITHUB_NOT_CONFIGURED:
+        code: "102"
+        ui_message: "現在 GitHub ログインを利用できません"
+        action: "通常ログインを試す"
+      GITHUB_CODE_REQUIRED:
+        code: "103"
+        ui_message: "GitHub 認証コードを入力してください"
+        action: "やり直す"
+      GITHUB_TOKEN_MISSING:
+        code: "104"
+        ui_message: "GitHub トークンの取得に失敗しました"
+        action: "再試行する"
+      GITHUB_USER_FETCH_FAILED:
+        code: "105"
+        ui_message: "GitHub ユーザー情報の取得に失敗しました"
+        action: "時間をおいて再実行"
+      GITHUB_OAUTH_ERROR:
+        code: "106"
+        ui_message: "GitHub 連携中にエラーが発生しました"
+        action: "ログイン方法を選び直す"
+      GITHUB_USER_ID_MISSING:
+        code: "107"
+        ui_message: "GitHub ユーザー情報に ID が含まれていません"
+        action: "サポートに連絡する"
+      GITHUB_EMAIL_REQUIRED:
+        code: "108"
+        ui_message: "GitHub の確認済みメールアドレスが必要です"
+        action: "GitHub 設定を確認する"
+      INVALID_REFRESH_TOKEN:
+        code: "109"
+        ui_message: "セッションの有効期限が切れています"
+        action: "再ログインする"
+      REFRESH_TOKEN_REVOKED:
+        code: "110"
+        ui_message: "セッションが無効化されました"
+        action: "再ログインする"
+      REFRESH_DEVICE_MISMATCH:
+        code: "111"
+        ui_message: "別の端末からのアクセスが検出されました"
+        action: "同じ端末で再試行"
+      REFRESH_TOKEN_EXPIRED:
+        code: "112"
+        ui_message: "セッションの有効期限が切れました"
+        action: "再ログインする"
+      USER_NOT_FOUND:
+        code: "113"
+        ui_message: "アカウントが見つかりません"
+        action: "登録情報を確認する"
+      INVALID_TOKEN:
+        code: "114"
+        ui_message: "ログイン状態が一致しません"
+        action: "再ログインする"
+  admin_auth:
+    prefix: E11
+    errors:
+      INVALID_ADMIN_CREDENTIALS:
+        code: "100"
+        ui_message: "管理者 ID またはパスワードが正しくありません"
+        action: "入力を確認する"
+      ADMIN_TOKEN_INVALID:
+        code: "101"
+        ui_message: "管理者セッションが無効です"
+        action: "再ログインする"
+      ADMIN_TOKEN_SCOPE_INVALID:
+        code: "102"
+        ui_message: "管理者権限が不足しています"
+        action: "トップに戻る"
+      ADMIN_NOT_FOUND_OR_INACTIVE:
+        code: "103"
+        ui_message: "管理者アカウントが無効化されています"
+        action: "システム管理者に連絡"
+  master:
+    prefix: E12
+    errors:
+      MASTER_NOT_FOUND:
+        code: "100"
+        ui_message: "マスターデータが見つかりません"
+        action: "再読み込みする"
+      MASTER_KEY_INVALID:
+        code: "101"
+        ui_message: "指定したマスターキーは利用できません"
+        action: "トップに戻る"
+  diagnostics:
+    prefix: E0
+    errors:
+      INVALID_PAYLOAD:
+        code: "21"
+        ui_message: "回答の送信内容が不正です"
+        action: "入力を見直す"
+      OPTION_OUT_OF_VERSION:
+        code: "22"
+        ui_message: "設問が更新されました。フォームを再読み込みしてください"
+        action: "フォームを再取得"
+      SESSION_NOT_FOUND:
+        code: "40"
+        ui_message: "診断セッションが見つかりません。最初からやり直してください"
+        action: "診断を再開する"
+      DUPLICATE_ANSWER:
+        code: "41"
+        ui_message: "この選択肢は既に送信済みです"
+        action: "結果を確認する"
+      INVALID_SESSION_CODE:
+        code: "62"
+        ui_message: "診断セッションの形式が正しくありません"
+        action: "再度お試しください"
+      SESSION_OWNED_BY_OTHER:
+        code: "63"
+        ui_message: "この診断結果は別のアカウントに保存されています"
+        action: "別のアカウントを確認してください"
+      NO_ANSWERS:
+        code: "45"
+        ui_message: "回答が不足しているため結果を生成できません"
+        action: "必要な設問に回答する"
+      SYSTEM_PROMPT_MISSING:
+        code: "43"
+        ui_message: "診断の設定が不完全なため結果を生成できません"
+        action: "時間をおいて再度お試しください"
+      LLM_OP_INCOMPLETE:
+        code: "44"
+        ui_message: "選択肢情報が不足しているため結果を生成できません"
+        action: "回答を再送信してください"
+      LLM_CALL_FAILED:
+        code: "50"
+        ui_message: "結果の生成に失敗しました。時間をおいて再度お試しください"
+        action: "再実行する"

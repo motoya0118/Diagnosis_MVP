@@ -1,0 +1,129 @@
+version: 1
+domains:
+  common:
+    prefix: E00
+    errors:
+      UNAUTHENTICATED:
+        code: "100"
+        ui_message: "管理者ログインが必要です"
+        action: "ログインする"
+      PERMISSION_DENIED:
+        code: "101"
+        ui_message: "この画面へアクセスする権限がありません"
+        action: "ダッシュボードへ戻る"
+      VALIDATION_ERROR:
+        code: "102"
+        ui_message: "入力内容に誤りがあります"
+        action: "入力を修正する"
+      RESOURCE_NOT_FOUND:
+        code: "103"
+        ui_message: "対象データが見つかりません"
+        action: "再読み込みする"
+      UNEXPECTED_ERROR:
+        code: "999"
+        ui_message: "不明なエラーが発生しました"
+        action: "しばらくして再試行"
+  admin_auth:
+    prefix: E11
+    errors:
+      INVALID_ADMIN_CREDENTIALS:
+        code: "100"
+        ui_message: "管理者 ID またはパスワードが正しくありません"
+        action: "入力を確認する"
+      ADMIN_TOKEN_INVALID:
+        code: "101"
+        ui_message: "管理者セッションが期限切れです"
+        action: "再ログインする"
+      ADMIN_TOKEN_SCOPE_INVALID:
+        code: "102"
+        ui_message: "必要な管理者権限がありません"
+        action: "トップに戻る"
+      REFRESH_TOKEN_INVALID:
+        code: "104"
+        ui_message: "管理者セッション情報が無効です"
+        action: "再ログインする"
+      REFRESH_TOKEN_REVOKED:
+        code: "105"
+        ui_message: "このセッションは破棄されています"
+        action: "再ログインする"
+      REFRESH_DEVICE_MISMATCH:
+        code: "106"
+        ui_message: "セッションを開始した端末と一致しません"
+        action: "再ログインする"
+      REFRESH_TOKEN_EXPIRED:
+        code: "107"
+        ui_message: "セッションの有効期限が切れています"
+        action: "再ログインする"
+      ADMIN_NOT_FOUND_OR_INACTIVE:
+        code: "103"
+        ui_message: "管理者アカウントが無効化されています"
+        action: "システム管理者に連絡"
+  auth:
+    prefix: E10
+    errors:
+      INVALID_CREDENTIALS:
+        code: "101"
+        ui_message: "ユーザー認証情報が無効です"
+        action: "再度ログイン"
+      USER_NOT_FOUND:
+        code: "113"
+        ui_message: "ユーザーが存在しません"
+        action: "入力内容を確認"
+      INVALID_TOKEN:
+        code: "114"
+        ui_message: "ユーザーセッションが期限切れです"
+        action: "再ログインする"
+  master:
+    prefix: E12
+    errors:
+      MASTER_NOT_FOUND:
+        code: "100"
+        ui_message: "マスターデータが取得できません"
+        action: "再読み込み"
+      MASTER_KEY_INVALID:
+        code: "101"
+        ui_message: "無効なマスターキーが指定されました"
+        action: "一覧に戻る"
+  diagnostics:
+    prefix: E0
+    errors:
+      DIAGNOSTIC_NOT_FOUND:
+        code: "01"
+        ui_message: "指定した診断が見つかりません"
+        action: "診断を選び直してください"
+      VERSION_NAME_DUP:
+        code: "02"
+        ui_message: "同じ版名がすでに存在します"
+        action: "版名を変更してください"
+      VERSION_NOT_FOUND:
+        code: "10"
+        ui_message: "指定した版が見つかりません"
+        action: "版一覧を再読み込みしてください"
+      VERSION_FROZEN:
+        code: "20"
+        ui_message: "指定した版は凍結されています"
+        action: "Draft 版を選択してください"
+      DEP_MISSING:
+        code: "30"
+        ui_message: "必要な依存データが不足しています"
+        action: "関連データを確認してください"
+      STATUS_INVALID:
+        code: "11"
+        ui_message: "診断一覧の取得条件が不正です"
+        action: "フィルタを確認する"
+      INVALID_FILTER:
+        code: "13"
+        ui_message: "クエリパラメータの組み合わせが不正です"
+        action: "条件を確認してください"
+      IMPORT_VALIDATION:
+        code: "31"
+        ui_message: "入力内容が不正です"
+        action: "入力内容を確認してください"
+      SHEET_MISSING:
+        code: "33"
+        ui_message: "テンプレートに必須シートが含まれていません"
+        action: "テンプレートを確認してください"
+      COL_MISSING:
+        code: "34"
+        ui_message: "テンプレートの列構成が一致しません"
+        action: "テンプレートを確認してください"

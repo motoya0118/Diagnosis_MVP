@@ -1,0 +1,100 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: app_db
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - db-data:/var/lib/mysql
+
+  db_test:
+    image: mysql:8.0
+    container_name: app_db_test
+    environment:
+      MYSQL_DATABASE: app_test
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    tmpfs:
+      - /var/lib/mysql
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: app_backend
+    env_file:
+      - ./backend/.env.${ENV:-development}
+    environment:
+      PYTHONPATH: /app
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      AWS_REGION: ${AWS_REGION:-ap-northeast-1}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-ap-northeast-1}
+    depends_on:
+      db:
+        condition: service_healthy
+      db_test:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      # Optional: live-mount app code during development
+      # - ./backend:/app
+      # Mount documents so seed can access CSV inside the container
+      - ./_documents:/data/_documents:ro
+
+  frontend:
+    image: node:20-alpine
+    container_name: app_frontend
+    working_dir: /app
+    command: sh -lc "npm ci || npm install && npm run dev"
+    env_file:
+      - ./frontend/.env.development
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
+
+  admin_front:
+    image: node:20-alpine
+    container_name: app_admin_front
+    working_dir: /app
+    command: sh -lc "npm ci || npm install && npm run dev"
+    env_file:
+      - ./admin_front/.env.development
+    depends_on:
+      - backend
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./admin_front:/app
+      - admin-front-node-modules:/app/node_modules
+
+volumes:
+  db-data:
+  frontend-node-modules:
+  admin-front-node-modules:

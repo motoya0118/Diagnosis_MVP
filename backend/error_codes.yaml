@@ -1,0 +1,205 @@
+version: 1
+domains:
+  common:
+    prefix: E00
+    errors:
+      UNAUTHENTICATED:
+        code: "100"
+        http: 401
+        message: "認証が必要です"
+      PERMISSION_DENIED:
+        code: "101"
+        http: 403
+        message: "この操作を実行する権限がありません"
+      VALIDATION_ERROR:
+        code: "102"
+        http: 422
+        message: "入力値が不正です"
+      RESOURCE_NOT_FOUND:
+        code: "103"
+        http: 404
+        message: "指定されたリソースが見つかりません"
+      UNEXPECTED_ERROR:
+        code: "999"
+        http: 500
+        message: "予期しないエラーが発生しました"
+  auth:
+    prefix: E10
+    errors:
+      EMAIL_ALREADY_REGISTERED:
+        code: "100"
+        http: 400
+        message: "メールアドレスは既に登録されています"
+      INVALID_CREDENTIALS:
+        code: "101"
+        http: 401
+        message: "メールアドレスまたはパスワードが正しくありません"
+      GITHUB_NOT_CONFIGURED:
+        code: "102"
+        http: 503
+        message: "GitHub OAuth が設定されていません"
+      GITHUB_CODE_REQUIRED:
+        code: "103"
+        http: 400
+        message: "GitHub OAuth コードまたはアクセストークンが必要です"
+      GITHUB_TOKEN_MISSING:
+        code: "104"
+        http: 400
+        message: "GitHub のアクセストークンを取得できませんでした"
+      GITHUB_USER_FETCH_FAILED:
+        code: "105"
+        http: 502
+        message: "GitHub ユーザー情報の取得に失敗しました"
+      GITHUB_OAUTH_ERROR:
+        code: "106"
+        http: 400
+        message: "GitHub OAuth 認証でエラーが発生しました"
+      GITHUB_USER_ID_MISSING:
+        code: "107"
+        http: 400
+        message: "GitHub ユーザー ID を取得できませんでした"
+      GITHUB_EMAIL_REQUIRED:
+        code: "108"
+        http: 400
+        message: "GitHub で確認済みのメールアドレスを取得できませんでした"
+      INVALID_REFRESH_TOKEN:
+        code: "109"
+        http: 401
+        message: "指定したリフレッシュトークンは無効です"
+      REFRESH_TOKEN_REVOKED:
+        code: "110"
+        http: 401
+        message: "リフレッシュトークンは失効しています"
+      REFRESH_DEVICE_MISMATCH:
+        code: "111"
+        http: 401
+        message: "リフレッシュトークンのデバイス情報が一致しません"
+      REFRESH_TOKEN_EXPIRED:
+        code: "112"
+        http: 401
+        message: "リフレッシュトークンの有効期限が切れています"
+      USER_NOT_FOUND:
+        code: "113"
+        http: 401
+        message: "ユーザーが見つかりません"
+      INVALID_TOKEN:
+        code: "114"
+        http: 401
+        message: "アクセストークンが無効です"
+  admin_auth:
+    prefix: E11
+    errors:
+      INVALID_ADMIN_CREDENTIALS:
+        code: "100"
+        http: 401
+        message: "管理者 ID またはパスワードが正しくありません"
+      ADMIN_TOKEN_INVALID:
+        code: "101"
+        http: 401
+        message: "管理者トークンが無効です"
+      ADMIN_TOKEN_SCOPE_INVALID:
+        code: "102"
+        http: 403
+        message: "管理者トークンのスコープが不正です"
+      ADMIN_NOT_FOUND_OR_INACTIVE:
+        code: "103"
+        http: 401
+        message: "管理者が存在しないか無効化されています"
+  master:
+    prefix: E12
+    errors:
+      MASTER_NOT_FOUND:
+        code: "100"
+        http: 404
+        message: "指定したマスターデータが存在しません"
+      MASTER_KEY_INVALID:
+        code: "101"
+        http: 403
+        message: "指定したマスターキーは利用できません"
+  diagnostics:
+    prefix: E0
+    errors:
+      DIAGNOSTIC_NOT_FOUND:
+        code: "01"
+        http: 404
+        message: "指定した診断が存在しません"
+      INVALID_PAYLOAD:
+        code: "21"
+        http: 400
+        message: "回答の送信内容が不正です"
+      OPTION_OUT_OF_VERSION:
+        code: "22"
+        http: 400
+        message: "指定した選択肢が診断版に含まれていません"
+      VERSION_NAME_DUP:
+        code: "02"
+        http: 409
+        message: "同名の診断版が既に存在します"
+      VERSION_NOT_FOUND:
+        code: "10"
+        http: 404
+        message: "指定した診断版が存在しません"
+      VERSION_FROZEN:
+        code: "20"
+        http: 409
+        message: "診断版は凍結されています"
+      SESSION_NOT_FOUND:
+        code: "40"
+        http: 404
+        message: "指定した診断セッションが存在しません"
+      DUPLICATE_ANSWER:
+        code: "41"
+        http: 409
+        message: "同じ選択肢が既に登録されています"
+      DEP_MISSING:
+        code: "30"
+        http: 409
+        message: "必要な依存データが不足しています"
+      STATUS_INVALID:
+        code: "11"
+        http: 400
+        message: "ステータスの指定が不正です"
+      LIMIT_INVALID:
+        code: "12"
+        http: 400
+        message: "limit の指定が不正です"
+      INVALID_FILTER:
+        code: "13"
+        http: 400
+        message: "クエリパラメータの組み合わせが不正です"
+      INVALID_SESSION_CODE:
+        code: "62"
+        http: 400
+        message: "指定した診断セッションコードは利用できません"
+      SESSION_OWNED_BY_OTHER:
+        code: "63"
+        http: 409
+        message: "指定した診断セッションは既に別のユーザーに紐付けられています"
+      IMPORT_VALIDATION:
+        code: "31"
+        http: 400
+        message: "入力内容の検証に失敗しました"
+      SHEET_MISSING:
+        code: "33"
+        http: 400
+        message: "インポートテンプレに必須シートが不足しています"
+      COL_MISSING:
+        code: "34"
+        http: 400
+        message: "インポートテンプレの列定義が一致しません"
+      NO_ANSWERS:
+        code: "45"
+        http: 400
+        message: "回答が0件のため結果を生成できません"
+      SYSTEM_PROMPT_MISSING:
+        code: "43"
+        http: 400
+        message: "system_prompt が設定されていません"
+      LLM_OP_INCOMPLETE:
+        code: "44"
+        http: 400
+        message: "選択肢の llm_op が不足しています"
+      LLM_CALL_FAILED:
+        code: "50"
+        http: 502
+        message: "LLM 呼び出しに失敗しました"

@@ -1,0 +1,39 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "generate:error-codes": "ts-node --project tsconfig.scripts.json scripts/generateErrorCodes.ts"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "immer": "^10.1.1",
+    "next": "^15.5.4",
+    "next-auth": "^4.24.11",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/jest": "29.5.12",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "babel-jest": "^30.0.0",
+    "jest": "^30.0.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "msw": "^2.11.6",
+    "ts-node": "10.9.2",
+    "typescript": "^5.9.3",
+    "undici": "^7.16.0",
+    "yaml": "2.5.1"
+  }
+}
